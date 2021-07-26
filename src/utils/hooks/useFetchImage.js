@@ -34,6 +34,7 @@ export default function useFetchImage(page, searchQuery) {
 	useEffect(() => {
 		setIsLoading(true);
 		fetch();
+		// eslint-disable-next-line
 	}, [page, searchQuery]);
 
 	return [Images, setImages, errors, isLoading];
