@@ -25,7 +25,6 @@ export default function Login() {
 			})
 			.catch((e) => {
 				setError(e.message)
-
 				setIsLoading(false)
 			});
 	}
