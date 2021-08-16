@@ -5,12 +5,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export default function App() {
 	return <Router>
-		<div>
+		<>
 			<Header />
 			<Switch>
 				{
-					routes.map(route => (
+					routes.map((route, index) => (
 						<Route
+							key={index}
 							path={route.path}
 							exact={route.exact}
 							component={route.component}
@@ -18,6 +19,6 @@ export default function App() {
 					))
 				}
 			</Switch>
-		</div>
+		</>
 	</Router>;
 }
