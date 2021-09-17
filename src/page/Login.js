@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Redirect, useHistory } from 'react-router';
 import firebase from '../config/firebase';
 
 export default function Login() {
@@ -8,6 +9,10 @@ export default function Login() {
 		email: "",
 		password: "",
 	});
+	const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+
+	const history = useHistory()
 
 	function handleForm(e) {
 		e.preventDefault();
@@ -19,9 +24,10 @@ export default function Login() {
 		firebase.auth()
 			.signInWithEmailAndPassword(form.email, form.password)
 			.then((res) => {
-				// Signed in
-				var user = res.user;
+
+				history.replace("/");
 				setIsLoading(false)
+				setIsLoggedIn(true);
 			})
 			.catch((e) => {
 				setError(e.message)
@@ -34,6 +40,10 @@ export default function Login() {
 			...form,
 			[e.target.name]: e.target.value,
 		});
+	}
+
+	if (isLoggedIn) {
+		return <Redirect to="/" />
 	}
 
 	return (
