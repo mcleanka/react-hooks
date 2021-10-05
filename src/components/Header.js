@@ -7,8 +7,6 @@ export default function Header() {
 	const [isLoggedIn, user] = useContext(AppContext)
 	const history = useHistory();
 
-
-
 	function logout() {
 		firebase.auth().signOut().then((res) => {
 			history.replace("/login");
